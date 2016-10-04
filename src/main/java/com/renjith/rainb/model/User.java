@@ -19,6 +19,17 @@ public class User {
 
 	@Column(name = "login_status")
 	private byte loginStatus;
+	
+	// 1 - admin, 2 - user
+	private int role;
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;

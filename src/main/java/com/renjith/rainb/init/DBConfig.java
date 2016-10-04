@@ -15,10 +15,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.renjith.rainb.model.User;
-
 @Configuration
-@PropertySource("classpath:db.properties")
+@PropertySource({ "classpath:db.properties", "classpath:application.properties" })
 @EnableTransactionManagement
 public class DBConfig {
 

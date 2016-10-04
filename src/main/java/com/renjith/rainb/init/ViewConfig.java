@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.ViewResolver;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = "com.renjith.rainb")
 @EnableWebMvc
 @Import({ DBConfig.class })
+@ImportResource({ "classpath:spring-security.xml" })
 public class ViewConfig extends WebMvcConfigurerAdapter {
 
 	@Override

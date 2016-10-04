@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	Environment env;
 
 	@Override
 	@Transactional
@@ -32,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		BeanUtils.copyProperties(userDto, u);
 		userDao.save(u);
 		if (userDto.getId() > 5) {
-			throw new PaymentError("something went wrong!!");
+			throw new PaymentError(env.getProperty("payment.error"));
 		}
 		return false;
 	}
