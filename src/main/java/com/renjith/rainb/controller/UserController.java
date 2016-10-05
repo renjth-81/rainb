@@ -34,10 +34,9 @@ public class UserController {
 	// return "success";
 	// }
 
-	
 	@RequestMapping("usr")
 	public String userHome(ModelMap model) {
 		return "userhome";
 	}
-	
+
 }

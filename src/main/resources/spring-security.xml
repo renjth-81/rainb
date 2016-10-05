@@ -14,10 +14,12 @@
 			password-parameter="password" authentication-failure-url="/login?error"
 			authentication-success-handler-ref="myAuthenticationSuccessHandler" />
 
-		<logout logout-success-url="/login?logout" />
+		<logout delete-cookies="JSESSIONID" logout-success-url="/login?logout" invalidate-session="true" />
 
 		<!-- enable csrf protection -->
-		<!-- <csrf/> -->
+		<csrf />
+
+		<access-denied-handler ref="customAccessDeniedHandler" />
 	</http>
 
 	<authentication-manager>
@@ -25,8 +27,10 @@
 	</authentication-manager>
 
 	<beans:bean id="myAuthenticationSuccessHandler"
-		class="com.renjith.rainb.service.MyAuthenticationSuccessHandler" />
+		class="com.renjith.rainb.security.MyAuthenticationSuccessHandler" />
 	<beans:bean id="authenticationService"
-		class="com.renjith.rainb.service.AuthenticationService" />
+		class="com.renjith.rainb.security.AuthenticationService" />
+	<beans:bean id="customAccessDeniedHandler"
+		class="com.renjith.rainb.security.CustomAccessDeniedHandler" />
 
 </beans:beans>
