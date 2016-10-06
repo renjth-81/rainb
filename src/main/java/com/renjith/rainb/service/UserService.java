@@ -10,6 +10,8 @@ public interface UserService {
 
 	public List<User> getAll();
 
-	public boolean addUser(UserDto userDto) throws PaymentError;
+	public boolean addUser(UserDto userDto);
+
+	public boolean changePassword(String newPassword,int userId);
 
 }

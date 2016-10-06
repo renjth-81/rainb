@@ -7,14 +7,15 @@
 
 	<http auto-config='true'>
 		<!-- <intercept-url pattern="/**" access="ROLE_USER" /> -->
-		<intercept-url pattern="/usr/**" access="ROLE_USER" />
-		<intercept-url pattern="/adm/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/usr**" access="ROLE_USER" />
+		<intercept-url pattern="/adm**" access="ROLE_ADMIN" />
 
 		<form-login login-page="/login" username-parameter="username"
 			password-parameter="password" authentication-failure-url="/login?error"
 			authentication-success-handler-ref="myAuthenticationSuccessHandler" />
 
-		<logout delete-cookies="JSESSIONID" logout-success-url="/login?logout" invalidate-session="true" />
+		<logout delete-cookies="JSESSIONID" logout-success-url="/login?logout"
+			invalidate-session="true" />
 
 		<!-- enable csrf protection -->
 		<csrf />
@@ -26,10 +27,12 @@
 		<authentication-provider ref="authenticationService" />
 	</authentication-manager>
 
-	<beans:bean id="myAuthenticationSuccessHandler"
-		class="com.renjith.rainb.security.MyAuthenticationSuccessHandler" />
 	<beans:bean id="authenticationService"
 		class="com.renjith.rainb.security.AuthenticationService" />
+
+	<beans:bean id="myAuthenticationSuccessHandler"
+		class="com.renjith.rainb.security.MyAuthenticationSuccessHandler" />
+
 	<beans:bean id="customAccessDeniedHandler"
 		class="com.renjith.rainb.security.CustomAccessDeniedHandler" />
 

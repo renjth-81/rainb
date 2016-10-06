@@ -5,6 +5,15 @@ public class UserDto {
 	private String username;
 	private String password;
 	private byte loginStatus;
+	private int role;
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;

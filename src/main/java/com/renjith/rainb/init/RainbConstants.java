@@ -27,5 +27,7 @@ public class RainbConstants {
 	public static final String[] pagesAfterLogin = { "usr","adm" };
 
 	public static final String[] pagesBeforeLogin = { "home", "login" };
+	
+	public static final String USER_ID="userId";
 
 }

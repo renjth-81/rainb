@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -25,6 +26,10 @@ import org.springframework.web.servlet.view.JstlView;
 @Import({ DBConfig.class })
 @ImportResource({ "classpath:spring-security.xml" })
 public class ViewConfig extends WebMvcConfigurerAdapter {
+
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+	}
 
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {

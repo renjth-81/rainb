@@ -55,4 +55,10 @@
 		<session-timeout>15</session-timeout>
 	</session-config>
 
+	<!-- listener needed to expose request to current thread . Use this to inject 
+		request in authentication service -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 </web-app>

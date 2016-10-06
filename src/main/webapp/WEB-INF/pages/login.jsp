@@ -14,6 +14,7 @@
 <title>login</title>
 </head>
 <body>
+	<input type="hidden" id="context_path" value="<%=request.getContextPath() %>" />
 	<form action="j_spring_security_check" method="post">
 		username: <input type="text" name="username" /> <br> password: <input
 			type="password" name="password" /> <br> <input type="submit"

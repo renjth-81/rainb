@@ -7,6 +7,7 @@
 <title>user home</title>
 </head>
 <body>
+	<p>user id ${userId}</p>
 	<form action="${pageContext.request.contextPath}/j_spring_security_logout" method="post">
 		<input type="hidden" name="_csrf" value="${_csrf.token}" />
 		<input type="submit" name="submit" value="logout" />

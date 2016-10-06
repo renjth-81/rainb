@@ -39,4 +39,10 @@ public class UserDao {
 		return user;
 	}
 
+	public User findOne(int id) {
+		User user = (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("id", id))
+				.uniqueResult();
+		return user;
+	}
+
 }
