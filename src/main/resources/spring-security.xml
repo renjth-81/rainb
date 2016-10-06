@@ -7,8 +7,8 @@
 
 	<http auto-config='true'>
 		<!-- <intercept-url pattern="/**" access="ROLE_USER" /> -->
-		<intercept-url pattern="/usr**" access="ROLE_USER" />
-		<intercept-url pattern="/adm**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/usr/**" access="ROLE_USER" />
+		<intercept-url pattern="/adm/**" access="ROLE_ADMIN" />
 
 		<form-login login-page="/login" username-parameter="username"
 			password-parameter="password" authentication-failure-url="/login?error"
