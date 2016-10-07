@@ -10,8 +10,8 @@ function addProduct(){
 		formData.append('desc',$('#desc').val());
 		formData.append('price',$('#price').val());
 		formData.append('stock',$('#stock').val());
+		formData.append('name',$('#image')[0].files[0]);
 		
-		//formData.append('name',$('#prod_name').val());
 		$.ajax({
 			  url: contextPath + '/admsaveprod.json',
 			  data: formData,
