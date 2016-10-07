@@ -15,6 +15,12 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * Contains Datasource,Hibernate SessionFactory and TransactionManager
+ * 
+ * @author renjithkn
+ *
+ */
 @Configuration
 @PropertySource({ "classpath:db.properties", "classpath:application.properties" })
 @EnableTransactionManagement
@@ -27,7 +33,6 @@ public class DBConfig {
 	public HibernateTransactionManager transactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 		transactionManager.setSessionFactory(sessionFactory());
-
 		return transactionManager;
 	}
 
@@ -45,7 +50,8 @@ public class DBConfig {
 		Properties properties = new Properties();
 		properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+		// properties.put("hibernate.hbm2ddl.auto",
+		// env.getProperty("hibernate.hbm2ddl.auto"));
 		// properties.put("hibernate.current_session_context_class",
 		// env.getProperty("hibernate.current_session_context_class"));
 		return properties;

@@ -24,10 +24,15 @@ public class RainbConstants {
 
 	public static final String ROLE = "role";
 
-	public static final String[] pagesAfterLogin = { "usr","adm" };
+	public static final String[] pagesAfterLogin = { "usr", "adm" };
 
 	public static final String[] pagesBeforeLogin = { "home", "login" };
-	
-	public static final String USER_ID="userId";
 
+	public static final String USER_ID = "userId";
+
+	public static final int ACTIVE = 1;
+	public static final int INACTIVE = 0;
+	
+	public static final String PRODUCT_IMAGE = "image";
+	
 }

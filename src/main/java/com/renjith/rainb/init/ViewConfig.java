@@ -3,13 +3,16 @@ package com.renjith.rainb.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -20,12 +23,23 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+/**
+ * Configuration class containing view resolver beans, static resource handlers
+ * and handler interceptor. Also imports beans from spring-security.xml
+ * namespace into this class.
+ * 
+ * @author renjithkn
+ *
+ */
 @Configuration
 @ComponentScan(basePackages = "com.renjith.rainb")
 @EnableWebMvc
 @Import({ DBConfig.class })
 @ImportResource({ "classpath:spring-security.xml" })
 public class ViewConfig extends WebMvcConfigurerAdapter {
+
+	@Autowired
+	Environment env;
 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
@@ -72,6 +86,13 @@ public class ViewConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new CustomInterceptor());
+	}
+
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setMaxUploadSize(Integer.parseInt(env.getProperty("file.maxsize")));
+		return resolver;
 	}
 
 }
