@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.renjith.rainb.dto.UserDto;
 import com.renjith.rainb.init.RainbConstants;
@@ -51,6 +52,11 @@ public class UserController {
 		model.addAttribute("result", userService.changePassword(userDto.getPassword(),
 				(Integer) request.getAttribute(RainbConstants.USER_ID)));
 		return "result";
+	}
+
+	@RequestMapping("usrchat")
+	public String userChat(HttpServletRequest request) {
+		return "userchat";
 	}
 
 }

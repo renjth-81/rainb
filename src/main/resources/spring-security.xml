@@ -18,7 +18,7 @@
 			invalidate-session="true" />
 
 		<!-- enable csrf protection -->
-		<csrf />
+<!-- 		<csrf  /> -->
 
 		<access-denied-handler ref="customAccessDeniedHandler" />
 	</http>

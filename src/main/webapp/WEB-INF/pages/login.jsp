@@ -20,7 +20,10 @@
 			type="password" name="password" /> <br> <input type="submit"
 			name="submit" value="login" />
 		<!-- for form submit, use hidden field with parameter name "_csrf " -->
-		<input type="hidden" name="_csrf" value="${_csrf.token}" />
+<%-- 		<input type="hidden" name="_csrf" value="${_csrf.token}" /> --%>
 	</form>
+	
+	<br>
+	<a href="<%=request.getContextPath() %>/fblogin">facebook login</a>
 </body>
 </html>

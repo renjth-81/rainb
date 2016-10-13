@@ -9,6 +9,7 @@ import java.util.Date;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +18,7 @@ import com.renjith.rainb.dto.ProductDto;
 import com.renjith.rainb.model.Product;
 import com.renjith.rainb.service.AdminService;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
@@ -27,12 +29,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	@Transactional
-	public boolean addProduct(ProductDto productDto) {
+	public boolean addProduct(ProductDto productDto, MultipartFile file) {
 		Product product = new Product();
 		BeanUtils.copyProperties(productDto, product);
 		int productId = productDao.save(product);
-		if (productDto.getImage() != null) {
-			product.setImagePath(saveProductImage(productDto.getImage(), productId));
+		if (file != null) {
+			product.setImagePath(saveProductImage(file, productId));
 			productDao.save(product);
 		}
 		return true;

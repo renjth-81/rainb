@@ -34,7 +34,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan(basePackages = "com.renjith.rainb")
 @EnableWebMvc
-@Import({ DBConfig.class })
+@Import({ DBConfig.class, SocialConfig.class, WebsocketConfig.class })
 @ImportResource({ "classpath:spring-security.xml" })
 public class ViewConfig extends WebMvcConfigurerAdapter {
 

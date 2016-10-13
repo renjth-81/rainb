@@ -1,11 +1,25 @@
 package com.renjith.rainb.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.security.config.annotation.authentication.configurers.provisioning.JdbcUserDetailsManagerConfigurer;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionData;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.connect.FacebookConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.renjith.rainb.dto.UserDto;
 import com.renjith.rainb.init.RainbConstants;
@@ -16,6 +30,12 @@ public class HomeController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	FacebookConnectionFactory fbConnectionFactory;
+
+	@Autowired
+	Environment env;
 
 	@RequestMapping({ "/", "/home" })
 	public String home(ModelMap model) {
@@ -73,6 +93,36 @@ public class HomeController {
 	public String signUp(UserDto userDto, ModelMap model) {
 		model.addAttribute("result", userService.addUser(userDto));
 		return "result";
+	}
+
+	@RequestMapping("fblogin")
+	public void fbLogin(HttpServletResponse response) {
+		OAuth2Operations oauthOperations = fbConnectionFactory.getOAuthOperations();
+		OAuth2Parameters params = new OAuth2Parameters();
+		params.setRedirectUri(env.getProperty("fb.redirect_url"));
+		String authorizeUrl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, params);
+		try {
+			response.sendRedirect(authorizeUrl);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping("fbcallback")
+	public void fbCallback(@RequestParam(name = "code") String authCode, ModelMap model,
+			HttpServletRequest request) {
+		OAuth2Operations oauthOperations = fbConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(authCode, env.getProperty("fb.redirect_url"),
+				null);
+		// AccessGrant accessGrant = new AccessGrant(accessToken);
+		Connection<Facebook> connection = fbConnectionFactory.createConnection(accessGrant);
+		model.addAttribute("username", connection.getDisplayName());
+		System.out.println(connection.getDisplayName());
+		ConnectionData cd = connection.createData();
+		// persist connection data
+	
+		// 
+		connection.getApi();
 	}
 	
 }

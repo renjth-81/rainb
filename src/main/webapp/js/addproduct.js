@@ -10,7 +10,7 @@ function addProduct(){
 		formData.append('desc',$('#desc').val());
 		formData.append('price',$('#price').val());
 		formData.append('stock',$('#stock').val());
-		formData.append('name',$('#image')[0].files[0]);
+		formData.append('image',$('#image')[0].files[0]);
 		
 		$.ajax({
 			  url: contextPath + '/admsaveprod.json',
@@ -20,6 +20,10 @@ function addProduct(){
 			  type: 'POST',
 			  success: function(data){
 			    alert(data.result);
+			    $('#prod_name').val('');
+				$('#desc').val('');
+				$('#price').val('');
+				$('#stock').val('');
 			  }
 			});
 		

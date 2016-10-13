@@ -8,16 +8,15 @@ public class ProductDto {
 	private String name;
 	private double price;
 	private int stock;
-	private String desc;
+	private String description;
 	private int isActive;
-	private MultipartFile image;
 
-	public MultipartFile getImage() {
-		return image;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setImage(MultipartFile image) {
-		this.image = image;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getIsActive() {
@@ -26,14 +25,6 @@ public class ProductDto {
 
 	public void setIsActive(int isActive) {
 		this.isActive = isActive;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
 	}
 
 	public int getId() {

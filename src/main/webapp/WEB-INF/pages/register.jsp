@@ -12,7 +12,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/register.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/csrf.js"></script>
+<%-- <script type="text/javascript" src="<%=request.getContextPath() %>/js/csrf.js"></script> --%>
 <title>register</title>
 </head>
 <body>

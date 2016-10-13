@@ -13,9 +13,11 @@ public class Product {
 	@GeneratedValue
 	private int id;
 	private String name;
-	private String desc;
+	private String description;
 	private double price;
 	private int stock;
+
+	@Column(name = "image_path")
 	private String imagePath;
 
 	public String getImagePath() {
@@ -29,12 +31,12 @@ public class Product {
 	@Column(name = "is_active")
 	private int isActive;
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getIsActive() {
